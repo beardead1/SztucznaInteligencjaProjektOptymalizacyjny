@@ -1,0 +1,14 @@
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\baza.csv
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\Problem-plecakowy.exe
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\Problem-plecakowy.deps.json
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\Problem-plecakowy.runtimeconfig.json
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\Problem-plecakowy.runtimeconfig.dev.json
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\Problem-plecakowy.dll
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\bin\Debug\netcoreapp3.1\Problem-plecakowy.pdb
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.csprojAssemblyReference.cache
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.AssemblyInfoInputs.cache
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.AssemblyInfo.cs
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.csproj.CoreCompileInputs.cache
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.dll
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.pdb
+D:\Szkola\Paluszak\Projekt\Problem-plecakowy\Problem-plecakowy\obj\Debug\netcoreapp3.1\Problem-plecakowy.genruntimeconfig.cache
