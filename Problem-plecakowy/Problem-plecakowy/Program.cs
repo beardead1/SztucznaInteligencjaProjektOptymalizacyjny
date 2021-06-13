@@ -13,6 +13,7 @@ namespace Problem_plecakowy
             var lines = System.IO.File.ReadAllLines("baza.csv");
             lines = lines.Skip(1).ToArray();
             int licz_foreach = 0;
+            int obj = 0; 
             foreach (var item in lines)
             {
                 var values = item.Split(';');
@@ -52,13 +53,9 @@ namespace Problem_plecakowy
             }
 
 
-            foreach (List<Paczka> aPart in HM)
+           for(int z = 0; z < HMS; z++)
             {
-                Console.WriteLine("HM next:");
-                foreach (Paczka aPart1 in aPart)
-                {
-                    Console.WriteLine("FP w HM: " + aPart1.Lp);
-                }
+                Console.WriteLine(FP[z]);
             }
 
 
@@ -66,25 +63,39 @@ namespace Problem_plecakowy
 
 
             int HMCR = 70;
-            int iteracje = 100;
+
+            int iteracje = 10000;
 
 
             List<List<Paczka>> HM_nowe = new List<List<Paczka>>();
-
             for (int g = 0; g < iteracje; g++)
             {
                 int r1 = rand.Next(100);
 
-                if (r1 < 100)
+                if (r1 < 70)
                 {
                     //szukamy nowego rozwiązania z pamięci algorytmu
                    nowe_rozwiazania.Clear();
                    rozwiazania_z_naszego();
                    List<Paczka> pomoc = new List<Paczka>(nowe_rozwiazania);
+
+
+                    int r2 = rand.Next(100);
+                    if (r2 < 15)
+                    {
+                        mutacja();
+                    }
+
+
+
                    HM_nowe.Add(pomoc);
                    FP_2.Add(nowe_rozwiazania.Count); 
                    
-                } else
+                }
+
+
+                
+                else
                 {
                     paczka_new.Clear();
                     rozwiazania();
@@ -92,32 +103,33 @@ namespace Problem_plecakowy
                     HM_nowe.Add(pomoc2);
                     FP_2.Add(paczka_new.Count);
                 }
+
+                int fitness_worst = 999;
+                int jaki_index_to_najmniejszy_finess = 0;
+                for (int l = 0; l < 15; l++)
+                {
+                    if(FP[l] < fitness_worst)
+                    {
+                        fitness_worst = FP[l];
+                        jaki_index_to_najmniejszy_finess = l;
+                    }
+                }
+                
+                HM[jaki_index_to_najmniejszy_finess] = HM_nowe[g];
+                FP[jaki_index_to_najmniejszy_finess] = FP_2[g]; 
+
             } 
 
-
-            
-
-            foreach (List<Paczka> aPart in HM_nowe)
-            {
-                Console.WriteLine("--------Następna Lista--------:" );
-                Console.WriteLine("** funkcja przystosowania **" + FP_2[licz_foreach]);
-                Console.WriteLine("--------Nowe rozwiązania--------:");
-                foreach (Paczka aPart1 in aPart)
-                {
-                    Console.WriteLine("ID: "+aPart1.Id +" Waga: " +aPart1.Waga + " Dł: " +aPart1.Dlugosc + " Sz.: " +aPart1.Szerokosc + " Wys.: " +aPart1.Wysokosc);
-                }
-                licz_foreach++;
-            }
 
 
             void rozwiazania() {
 
                 int waga1 = 0;
-                int obj = 0;
+                obj = 0;
                 
 
                 //POPRAWIĆ  dać IFa, żeby nie przekraczało wagi i obj.
-                for (int j = 0; waga1 <= 1000 && obj < objetosc; j++)
+                for (int j = 0; waga1 <= 1000 || obj < objetosc; j++)
                 {
                     int losowa = rand.Next(10000);
                     paczka_new.Add(paczka[losowa]);
@@ -128,7 +140,7 @@ namespace Problem_plecakowy
                     if (obj + (paczka_new[j].Dlugosc * (paczka_new[j].Szerokosc * paczka_new[j].Wysokosc)) > 1614800) { break; }
                     obj = obj + (paczka_new[j].Dlugosc * (paczka_new[j].Szerokosc * paczka_new[j].Wysokosc));
                 }
-                paczka_new.Remove(paczka_new[paczka_new.Count - 1]);
+                //paczka_new.Remove(paczka_new[paczka_new.Count - 1]);
             }
 
 
@@ -136,11 +148,11 @@ namespace Problem_plecakowy
             {
 
                 int waga1 = 0;
-                int obj = 0;
+                obj = 0;
 
 
                 //POPRAWIĆ  dać IFa, żeby nie przekraczało wagi i obj.
-                for (int j = 0; waga1 <= 1000 && obj < objetosc; j++)
+                for (int j = 0; waga1 <= 1000 || obj < objetosc; j++)
                 {
                     int losowa = rand.Next(15);
                    
@@ -153,8 +165,58 @@ namespace Problem_plecakowy
                     if (obj + (nowe_rozwiazania[j].Dlugosc * (nowe_rozwiazania[j].Szerokosc * nowe_rozwiazania[j].Wysokosc)) > 1614800) { break; }
                     obj = obj + (nowe_rozwiazania[j].Dlugosc * (nowe_rozwiazania[j].Szerokosc * nowe_rozwiazania[j].Wysokosc));
                 }
-                nowe_rozwiazania.Remove(nowe_rozwiazania[nowe_rozwiazania.Count - 1]);
+                //nowe_rozwiazania.Remove(nowe_rozwiazania[nowe_rozwiazania.Count - 1]);
             }
+
+
+
+
+            void mutacja()
+            {
+                int losowa_usun = rand.Next(nowe_rozwiazania.Count());
+                nowe_rozwiazania.RemoveAt(losowa_usun);
+                
+
+
+                for (int temp = 0; temp>0;)
+                { 
+                    
+                    int losowa = rand.Next(10000);
+
+                    if ((obj + (paczka[losowa].Dlugosc * paczka[losowa].Szerokosc * paczka[losowa].Wysokosc)) < 10000)
+                    {
+                        nowe_rozwiazania.Add(paczka[losowa]);
+                        temp = 1;
+                    }
+                    else temp = 0;
+                }
+
+
+
+                
+
+            }
+
+
+
+            Console.WriteLine("------------");
+            for (int p = 0; p<FP.Count; p++)
+            {
+                Console.WriteLine(FP[p]);
+            }
+
+
+            foreach (List<Paczka> test in HM)
+            {
+                Console.WriteLine("---------- W PACZCE SIE ZNAJDUJĄ: ----------");
+                foreach (Paczka test1 in test)
+                {
+                    Console.WriteLine("ROZWIĄZANIE:");
+                    Console.WriteLine("dl: "+ test1.Dlugosc + " szer: " + test1.Szerokosc + " wys: " + test1.Wysokosc + " waga: " + test1.Waga);
+                }
+                Console.WriteLine("ILOŚĆ PACZEK:" + test.Count);
+            }
+
 
 
 
